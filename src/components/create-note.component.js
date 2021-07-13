@@ -92,15 +92,13 @@ class CreateNote extends Component {
       .then((res) => {
         console.log(res.data);
       });
-
-    this.setOpen(true);
-
     axios
       .get("https://my-scratch-book.herokuapp.com/notes/find_last")
       .then((res) => {
         this.onChangeNoteAdded("Note added with the ID of " + res.data[0]._id);
         this.onChangeNoteLink(res.data[0]._id);
       });
+    this.setOpen(true);
   }
 
   render() {
