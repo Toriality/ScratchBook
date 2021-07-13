@@ -26,7 +26,7 @@ class NotesList extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/notes/")
+      .get("https://my-scratch-book.herokuapp.com/notes/")
       .then((response) => {
         this.setState({
           notes: response.data,
