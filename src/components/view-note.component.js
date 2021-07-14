@@ -19,9 +19,11 @@ class ViewNote extends Component {
       note: [],
       loading: true,
     };
+    this.renderNote = this.renderNote.bind(this);
   }
 
   renderNote() {
+    const { classes } = this.props;
     return (
       <Box className={classes.root}>
         <Typography variant="h6">{this.state.note.title}</Typography>
@@ -48,7 +50,6 @@ class ViewNote extends Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
       <>
         <Navbar />
