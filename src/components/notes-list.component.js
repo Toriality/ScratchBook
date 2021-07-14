@@ -92,7 +92,7 @@ class NotesList extends Component {
     return (
       <>
         <Typography variant="h6">Most recent notes:</Typography>
-        {this.state.loading ? <CircularProgress /> : renderNotes()}
+        {this.state.loading ? <CircularProgress /> : this.renderNotes()}
       </>
     );
   }

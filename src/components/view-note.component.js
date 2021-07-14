@@ -53,7 +53,7 @@ class ViewNote extends Component {
     return (
       <>
         <Navbar />
-        {this.state.loading ? <CircularProgress /> : renderNote()}
+        {this.state.loading ? <CircularProgress /> : this.renderNote()}
       </>
     );
   }
