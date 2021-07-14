@@ -1,9 +1,9 @@
 import React from "react";
 import { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Typography, Box } from "@material-ui/core/";
+import { Typography, Box, CircularProgress } from "@material-ui/core/";
 import axios from "axios";
-
+import { CircularProgress } from "@material-ui/core";
 import Navbar from "./navbar.component";
 
 const useStyles = (theme) => ({
@@ -18,8 +18,19 @@ class ViewNote extends Component {
     super(props);
     this.state = {
       note: [],
+      loading: true,
     };
   }
+
+  renderNote() {
+    return (
+      <Box className={classes.root}>
+        <Typography variant="h6">{this.state.note.title}</Typography>
+        <Typography>{this.state.note.desc}</Typography>
+      </Box>
+    );
+  }
+
   componentDidMount() {
     axios
       .get(
@@ -29,6 +40,7 @@ class ViewNote extends Component {
       .then((response) => {
         this.setState({
           note: response.data,
+          loading: false,
         });
       })
       .catch((error) => {
@@ -41,10 +53,7 @@ class ViewNote extends Component {
     return (
       <>
         <Navbar />
-        <Box className={classes.root}>
-          <Typography variant="h6">{this.state.note.title}</Typography>
-          <Typography>{this.state.note.desc}</Typography>
-        </Box>
+        {this.state.loading ? <CircularProgress /> : renderNote()}
       </>
     );
   }

@@ -5,6 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import { Typography } from "@material-ui/core";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { CircularProgress } from "@material-ui/core";
 
 const useStyles = (theme) => ({
   paper: {
@@ -21,27 +22,13 @@ const useStyles = (theme) => ({
 class NotesList extends Component {
   constructor(props) {
     super(props);
-    this.state = { notes: [] };
+    this.state = { notes: [], loading: true };
   }
 
-  componentDidMount() {
-    axios
-      .get("https://my-scratch-book.herokuapp.com/notes/")
-      .then((response) => {
-        this.setState({
-          notes: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  render() {
+  renderNotes() {
     const { classes } = this.props;
     return (
       <>
-        <Typography variant="h6">Most recent notes:</Typography>
         <Grid container spacing={3}>
           {this.state.notes
             .reverse()
@@ -82,6 +69,29 @@ class NotesList extends Component {
               } else return null;
             })}
         </Grid>
+      </>
+    );
+  }
+
+  componentDidMount() {
+    axios
+      .get("https://my-scratch-book.herokuapp.com/notes/")
+      .then((response) => {
+        this.setState({
+          notes: response.data,
+          loading: false,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  render() {
+    return (
+      <>
+        <Typography variant="h6">Most recent notes:</Typography>
+        {this.state.loading ? <CircularProgress /> : renderNotes()}
       </>
     );
   }
