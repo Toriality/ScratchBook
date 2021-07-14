@@ -3,7 +3,6 @@ import { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Box, CircularProgress } from "@material-ui/core/";
 import axios from "axios";
-import { CircularProgress } from "@material-ui/core";
 import Navbar from "./navbar.component";
 
 const useStyles = (theme) => ({
