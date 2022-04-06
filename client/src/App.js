@@ -7,8 +7,19 @@ import Home from "./components/home.component";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
+const primaryColor = "rgb(255, 200, 105)";
+
 const theme = createTheme({
   components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            boxShadow: "inset 0 0 0 2px " + primaryColor,
+          },
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: `
         body {
@@ -19,7 +30,7 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: "rgb(255, 200, 105)",
+      main: primaryColor,
     },
   },
   typography: {},
