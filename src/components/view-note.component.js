@@ -22,7 +22,10 @@ class ViewNote extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:5000/notes/id" + window.location.pathname)
+      .get(
+        "https://my-scratch-book.herokuapp.com/notes/id" +
+          window.location.pathname
+      )
       .then((response) => {
         this.setState({
           note: response.data,
