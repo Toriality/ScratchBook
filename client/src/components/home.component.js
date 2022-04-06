@@ -3,12 +3,12 @@ import Navbar from "../components/navbar.component";
 import CreateNote from "../components/create-note.component";
 import NotesList from "../components/notes-list.component";
 import { Component } from "react";
-import Box from "@material-ui/core/Box";
-import { withStyles } from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import { withStyles } from "@mui/styles";
 
 const useStyles = (theme) => ({
   root: {
-    margin: theme.spacing(3),
+    margin: theme.spacing(3) + " 10%",
   },
 });
 

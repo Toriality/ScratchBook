@@ -1,7 +1,7 @@
 import React from "react";
 import { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import { Typography, Box } from "@material-ui/core/";
+import { withStyles } from "@mui/styles";
+import { Typography, Box } from "@mui/material/";
 import axios from "axios";
 
 import Navbar from "./navbar.component";

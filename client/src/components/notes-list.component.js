@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import { Typography } from "@material-ui/core";
+import { withStyles } from "@mui/styles";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import { Typography } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
 

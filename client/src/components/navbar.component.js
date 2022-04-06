@@ -1,9 +1,9 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+import { withStyles } from "@mui/styles";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,6 +12,7 @@ const useStyles = (theme) => ({
     marginRight: theme.spacing(3),
   },
   appbar: {
+    alignItems: "center",
     backgroundColor: "rgba(0,0,0 ,0.125)",
     color: "black",
   },
