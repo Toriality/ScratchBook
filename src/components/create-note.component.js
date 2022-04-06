@@ -1,19 +1,23 @@
 import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import axios from "axios";
-import { withStyles } from "@material-ui/core/styles";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import { withStyles } from "@mui/styles";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import { Link } from "react-router-dom";
-import { Alert } from "@material-ui/lab";
-import Collapse from "@material-ui/core/Collapse";
-import { Grid } from "@material-ui/core";
-import { Box } from "@material-ui/core";
+import { Alert } from "@mui/lab";
+import Collapse from "@mui/material/Collapse";
+import { Grid } from "@mui/material";
+import { Box } from "@mui/material";
 
 const useStyles = (theme) => ({
   text: { minWidth: "100%" },
-  formBody: { marginBottom: theme.spacing(4) },
+  formBody: {
+    marginBottom: theme.spacing(4),
+    flexDirection: "column",
+    display: "flex",
+  },
   formSubmit: { margin: theme.spacing(3) },
   formSubmitGrid: { alignItems: "center" },
   formLabel: { marginBottom: "0.1rem" },
@@ -76,7 +80,7 @@ class CreateNote extends Component {
     });
   }
 
-  async onSubmit(e) {
+  onSubmit(e) {
     e.preventDefault();
 
     const note = {
@@ -87,18 +91,16 @@ class CreateNote extends Component {
 
     console.log(note);
 
-    await axios
-      .post("https://my-scratch-book.herokuapp.com/notes", note)
-      .then((res) => {
-        console.log(res.data);
-      });
-    axios
-      .get("https://my-scratch-book.herokuapp.com/notes/find_last")
-      .then((res) => {
-        this.onChangeNoteAdded("Note added with the ID of " + res.data[0]._id);
-        this.onChangeNoteLink(res.data[0]._id);
-      });
+    axios.post("http://localhost:5000/notes", note).then((res) => {
+      console.log(res.data);
+    });
+
     this.setOpen(true);
+
+    axios.get("http://localhost:5000/notes/find_last").then((res) => {
+      this.onChangeNoteAdded("Note added with the ID of " + res.data[0]._id);
+      this.onChangeNoteLink(res.data[0]._id);
+    });
   }
 
   render() {

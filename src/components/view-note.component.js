@@ -1,8 +1,9 @@
 import React from "react";
 import { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import { Typography, Box, CircularProgress } from "@material-ui/core/";
+import { withStyles } from "@mui/styles";
+import { Typography, Box } from "@mui/material/";
 import axios from "axios";
+
 import Navbar from "./navbar.component";
 
 const useStyles = (theme) => ({
@@ -17,31 +18,14 @@ class ViewNote extends Component {
     super(props);
     this.state = {
       note: [],
-      loading: true,
     };
-    this.renderNote = this.renderNote.bind(this);
   }
-
-  renderNote() {
-    const { classes } = this.props;
-    return (
-      <Box className={classes.root}>
-        <Typography variant="h6">{this.state.note.title}</Typography>
-        <Typography>{this.state.note.desc}</Typography>
-      </Box>
-    );
-  }
-
   componentDidMount() {
     axios
-      .get(
-        "https://my-scratch-book.herokuapp.com/notes/id" +
-          window.location.pathname
-      )
+      .get("http://localhost:5000/notes/id" + window.location.pathname)
       .then((response) => {
         this.setState({
           note: response.data,
-          loading: false,
         });
       })
       .catch((error) => {
@@ -50,10 +34,14 @@ class ViewNote extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <>
         <Navbar />
-        {this.state.loading ? <CircularProgress /> : this.renderNote()}
+        <Box className={classes.root}>
+          <Typography variant="h6">{this.state.note.title}</Typography>
+          <Typography>{this.state.note.desc}</Typography>
+        </Box>
       </>
     );
   }
