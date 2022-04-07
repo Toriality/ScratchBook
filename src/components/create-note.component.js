@@ -80,7 +80,7 @@ class CreateNote extends Component {
     });
   }
 
-  onSubmit(e) {
+  async onSubmit(e) {
     e.preventDefault();
 
     const note = {
@@ -91,7 +91,7 @@ class CreateNote extends Component {
 
     console.log(note);
 
-    axios
+    await axios
       .post("https://my-scratch-book.herokuapp.com/notes", note)
       .then((res) => {
         console.log(res.data);

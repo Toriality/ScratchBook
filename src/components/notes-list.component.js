@@ -3,6 +3,7 @@ import { withStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -17,31 +18,16 @@ const useStyles = (theme) => ({
     display: "inline-block",
   },
 });
-
 class NotesList extends Component {
   constructor(props) {
     super(props);
-    this.state = { notes: [] };
+    this.state = { notes: [], loading: true };
+    this.renderNotes = this.renderNotes.bind(this);
   }
-
-  componentDidMount() {
-    axios
-      .get("https://my-scratch-book.herokuapp.com/notes/")
-      .then((response) => {
-        this.setState({
-          notes: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  render() {
+  renderNotes() {
     const { classes } = this.props;
     return (
       <>
-        <Typography variant="h6">Most recent notes:</Typography>
         <Grid container spacing={3}>
           {this.state.notes
             .reverse()
@@ -85,6 +71,26 @@ class NotesList extends Component {
       </>
     );
   }
+  componentDidMount() {
+    axios
+      .get("https://my-scratch-book.herokuapp.com/notes/")
+      .then((response) => {
+        this.setState({
+          notes: response.data,
+          loading: false,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  render() {
+    return (
+      <>
+        <Typography variant="h6">Most recent notes:</Typography>
+        {this.state.loading ? <CircularProgress /> : this.renderNotes()}
+      </>
+    );
+  }
 }
-
 export default withStyles(useStyles)(NotesList);

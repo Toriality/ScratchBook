@@ -1,6 +1,7 @@
 import React from "react";
 import { Component } from "react";
 import { withStyles } from "@mui/styles";
+import { CircularProgress } from "@mui/material";
 import { Typography, Box } from "@mui/material/";
 import axios from "axios";
 
@@ -12,13 +13,23 @@ const useStyles = (theme) => ({
     whiteSpace: "pre-line",
   },
 });
-
 class ViewNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
       note: [],
+      loading: true,
     };
+    this.renderNote = this.renderNote.bind(this);
+  }
+  renderNote() {
+    const { classes } = this.props;
+    return (
+      <Box className={classes.root}>
+        <Typography variant="h6">{this.state.note.title}</Typography>
+        <Typography>{this.state.note.desc}</Typography>
+      </Box>
+    );
   }
   componentDidMount() {
     axios
@@ -29,25 +40,20 @@ class ViewNote extends Component {
       .then((response) => {
         this.setState({
           note: response.data,
+          loading: false,
         });
       })
       .catch((error) => {
         console.log(error);
       });
   }
-
   render() {
-    const { classes } = this.props;
     return (
       <>
         <Navbar />
-        <Box className={classes.root}>
-          <Typography variant="h6">{this.state.note.title}</Typography>
-          <Typography>{this.state.note.desc}</Typography>
-        </Box>
+        {this.state.loading ? <CircularProgress /> : this.renderNote()}
       </>
     );
   }
 }
-
 export default withStyles(useStyles)(ViewNote);
