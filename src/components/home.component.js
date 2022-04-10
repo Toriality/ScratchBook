@@ -6,19 +6,13 @@ import { Component } from "react";
 import Box from "@mui/material/Box";
 import { withStyles } from "@mui/styles";
 
-const useStyles = (theme) => ({
-  root: {
-    margin: theme.spacing(3) + " 10%",
-  },
-});
-
 class Home extends Component {
   render() {
     const { classes } = this.props;
     return (
       <>
         <Navbar />
-        <Box className={classes.root}>
+        <Box sx={{ m: "2.5em 10%" }}>
           <CreateNote />
           <NotesList />
         </Box>
@@ -27,4 +21,4 @@ class Home extends Component {
   }
 }
 
-export default withStyles(useStyles)(Home);
+export default Home;

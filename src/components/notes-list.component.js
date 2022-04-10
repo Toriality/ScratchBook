@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { withStyles } from "@mui/styles";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import { Typography } from "@mui/material";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Typography, Paper, Grid } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -12,18 +9,15 @@ const useStyles = (theme) => ({
     minHeight: "24ch",
     padding: theme.spacing(2),
   },
-  italic: {
-    fontStyle: "italic",
-    color: "#b0b0b0",
-    display: "inline-block",
-  },
 });
+
 class NotesList extends Component {
   constructor(props) {
     super(props);
     this.state = { notes: [], loading: true };
     this.renderNotes = this.renderNotes.bind(this);
   }
+
   renderNotes() {
     const { classes } = this.props;
     return (
@@ -41,12 +35,17 @@ class NotesList extends Component {
                         <Paper className={classes.paper}>
                           <Typography variant="h6">{note.title}</Typography>
                           <Typography variant="p">
-                            {note.desc.substring(0, 400)}{" "}
-                            <Typography className={classes.italic}>
+                            {note.desc.substring(0, 400)}
+                            <Typography
+                              sx={{
+                                fontStyle: "italic",
+                                color: "#b0b0b0",
+                                display: "inline-block",
+                              }}
+                            >
                               (...)
                             </Typography>
                           </Typography>
-                          <Typography variant="p">{note.private}</Typography>
                         </Paper>
                       </Link>
                     </Grid>
@@ -60,7 +59,6 @@ class NotesList extends Component {
                         <Typography variant="p">
                           {note.desc.substring(0, 400)}
                         </Typography>
-                        <Typography variant="p">{note.private}</Typography>
                       </Paper>
                     </Link>
                   </Grid>
@@ -71,6 +69,7 @@ class NotesList extends Component {
       </>
     );
   }
+
   componentDidMount() {
     axios
       .get("https://my-scratch-book.herokuapp.com/notes/")
@@ -81,9 +80,10 @@ class NotesList extends Component {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Error while connecting to the database");
       });
   }
+
   render() {
     return (
       <>
@@ -93,4 +93,5 @@ class NotesList extends Component {
     );
   }
 }
+
 export default withStyles(useStyles)(NotesList);

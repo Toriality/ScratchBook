@@ -1,18 +1,10 @@
 import React from "react";
 import { Component } from "react";
-import { withStyles } from "@mui/styles";
-import { CircularProgress } from "@mui/material";
-import { Typography, Box } from "@mui/material/";
+import { Typography, Box, CircularProgress } from "@mui/material/";
 import axios from "axios";
 
 import Navbar from "./navbar.component";
 
-const useStyles = (theme) => ({
-  root: {
-    margin: theme.spacing(3),
-    whiteSpace: "pre-line",
-  },
-});
 class ViewNote extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +17,7 @@ class ViewNote extends Component {
   renderNote() {
     const { classes } = this.props;
     return (
-      <Box className={classes.root}>
+      <Box sx={{ m: "2.5em 10%", whiteSpace: "pre-line" }}>
         <Typography variant="h6">{this.state.note.title}</Typography>
         <Typography>{this.state.note.desc}</Typography>
       </Box>
@@ -44,7 +36,7 @@ class ViewNote extends Component {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Error while trying to display this note");
       });
   }
   render() {
@@ -56,4 +48,4 @@ class ViewNote extends Component {
     );
   }
 }
-export default withStyles(useStyles)(ViewNote);
+export default ViewNote;

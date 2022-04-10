@@ -1,28 +1,16 @@
 import React, { Component } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import axios from "axios";
-import { withStyles } from "@mui/styles";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import { Link } from "react-router-dom";
+import {
+  Grid,
+  Box,
+  Collapse,
+  Checkbox,
+  FormControlLabel,
+  Button,
+  TextField,
+} from "@mui/material";
 import { Alert } from "@mui/lab";
-import Collapse from "@mui/material/Collapse";
-import { Grid } from "@mui/material";
-import { Box } from "@mui/material";
-
-const useStyles = (theme) => ({
-  text: { minWidth: "100%" },
-  formBody: {
-    marginBottom: theme.spacing(4),
-    flexDirection: "column",
-    display: "flex",
-  },
-  formSubmit: { margin: theme.spacing(3) },
-  formSubmitGrid: { alignItems: "center" },
-  formLabel: { marginBottom: "0.1rem" },
-  successAlert: { alignContent: "flex-end" },
-});
 
 class CreateNote extends Component {
   constructor(props) {
@@ -112,10 +100,18 @@ class CreateNote extends Component {
 
     return (
       <div className="App">
+        {/* Start of the form */}
         <form onSubmit={this.onSubmit}>
-          <Box className={classes.formBody}>
+          {/* Form body */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              marginBottom: 4,
+            }}
+          >
+            {/* 'Title' field */}
             <TextField
-              className={classes.text}
               required
               id="standard-required"
               label="Title"
@@ -123,8 +119,8 @@ class CreateNote extends Component {
               value={this.state.title}
               onChange={this.onChangeTitle}
             />
+            {/* 'Description' label */}
             <TextField
-              className={classes.text}
               required
               id="standard-multiline-static"
               label="Description"
@@ -135,36 +131,37 @@ class CreateNote extends Component {
               onChange={this.onChangeDesc}
             />
           </Box>
-          <Box className={classes.formSubmit}>
-            <Grid container spacing={0} className={classes.formSubmitGrid}>
-              <Grid item>
-                <Button variant="contained" type="submit">
-                  Create note
-                </Button>
-              </Grid>
-              <Grid item>
-                <FormControlLabel
-                  value={this.state.private}
-                  onChange={this.onChangePrivate}
-                  control={<Checkbox color="primary" />}
-                  label="Private"
-                  labelPlacement="start"
-                  className={classes.formLabel}
-                />
-              </Grid>
-              <Grid item xs={9} className={classes.successAlert}>
-                <Collapse in={this.state.open}>
-                  <Alert severity="success">
-                    <Link to={this.state.noteLink}>{this.state.noteAdded}</Link>
-                  </Alert>
-                </Collapse>
-              </Grid>
+
+          {/* Submit button and options */}
+          <Grid container alignItems="center" marginBottom={3}>
+            <Grid item>
+              <Button variant="contained" type="submit">
+                Create note
+              </Button>
             </Grid>
-          </Box>
+            <Grid item>
+              <FormControlLabel
+                value={this.state.private}
+                onChange={this.onChangePrivate}
+                control={<Checkbox color="primary" />}
+                label="Private"
+                labelPlacement="start"
+                sx={{ marginBottom: "0.1rem" }}
+              />
+            </Grid>
+            {/* 'Post added with the ID of' alert */}
+            <Grid item xs={9} marginLeft={3}>
+              <Collapse in={this.state.open}>
+                <Alert severity="success">
+                  <Link to={this.state.noteLink}>{this.state.noteAdded}</Link>
+                </Alert>
+              </Collapse>
+            </Grid>
+          </Grid>
         </form>
       </div>
     );
   }
 }
 
-export default withStyles(useStyles)(CreateNote);
+export default CreateNote;
