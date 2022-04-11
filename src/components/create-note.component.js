@@ -152,7 +152,10 @@ class CreateNote extends Component {
             {/* 'Post added with the ID of' alert */}
             <Grid item xs={9} marginLeft={3}>
               <Collapse in={this.state.open}>
-                <Alert severity="success">
+                <Alert
+                  severity="success"
+                  sx={{ minHeight: 0, "&:hover": { boxShadow: "none" } }}
+                >
                   <Link to={this.state.noteLink}>{this.state.noteAdded}</Link>
                 </Alert>
               </Collapse>

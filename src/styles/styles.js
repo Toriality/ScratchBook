@@ -1,3 +1,5 @@
+import { colors } from "./colors";
+
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -5,23 +7,25 @@ const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
+          minHeight: "24ch",
+          padding: "12px 16px",
           "&:hover": {
-            boxShadow: "inset 0 0 0 2px " + primaryColor,
+            boxShadow: "inset 0 0 0 2px " + colors.primary,
           },
         },
       },
     },
     MuiCssBaseline: {
       styleOverrides: `
-          body {
-            background: linear-gradient(  127deg,  rgba(255, 248, 185, 0.8),  rgba(0, 255, 0, 0) 70.71%),linear-gradient(336deg, rgba(255, 185, 120, 0.8), rgba(0, 0, 255, 0) 70.71%) !important;
-          }
-        `,
+        body {
+          ${colors.background_css}
+        }
+      `,
     },
   },
   palette: {
     primary: {
-      main: primaryColor,
+      main: colors.primary,
     },
   },
   typography: {},

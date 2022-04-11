@@ -7,7 +7,16 @@ class Navbar extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <AppBar position="static" sx={{ alignItems: "center" }}>
+      /* Since the MuiAppBar is also a MuiPaper, it is necessary to make adjustments to the sx */
+      <AppBar
+        position="static"
+        sx={{
+          alignItems: "center",
+          minHeight: "100%",
+          boxShadow: "none",
+          padding: 0,
+        }}
+      >
         <Toolbar>
           <IconButton
             edge="start"

@@ -4,13 +4,6 @@ import { CircularProgress, Typography, Paper, Grid } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const useStyles = (theme) => ({
-  paper: {
-    minHeight: "24ch",
-    padding: theme.spacing(2),
-  },
-});
-
 class NotesList extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +47,7 @@ class NotesList extends Component {
                 return (
                   <Grid item xs={6}>
                     <Link to={note._id}>
-                      <Paper className={classes.paper}>
+                      <Paper>
                         <Typography variant="h6">{note.title}</Typography>
                         <Typography variant="p">
                           {note.desc.substring(0, 400)}
@@ -94,4 +87,4 @@ class NotesList extends Component {
   }
 }
 
-export default withStyles(useStyles)(NotesList);
+export default NotesList;
