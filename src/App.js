@@ -8,13 +8,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "./styles/styles";
 
-import Users from "./components/users";
-
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Users />
-
       <CssBaseline />
       <Router>
         <Route path="/" exact component={Home} />
