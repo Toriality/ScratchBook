@@ -11,14 +11,12 @@ class NotesList extends Component {
   }
 
   renderNotes() {
-    const { notes } = this.props.notes;
-
-    console.log(notes);
+    const { list } = this.props.notes;
 
     return (
       <>
         <Grid container spacing={3}>
-          {notes
+          {list
             .reverse()
             .slice(0, 21)
             .map((note) => {

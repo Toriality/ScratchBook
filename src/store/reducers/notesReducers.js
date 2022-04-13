@@ -1,7 +1,8 @@
 import * as type from "../types";
 
 const initialState = {
-  notes: [],
+  list: [],
+  selected: [],
   loading: true,
 };
 
@@ -10,7 +11,13 @@ export default function (state = initialState, action) {
     case type.GET_NOTES:
       return {
         ...state,
-        notes: action.payload,
+        list: action.payload,
+        loading: false,
+      };
+    case type.VIEW_NOTE:
+      return {
+        ...state,
+        selected: action.payload,
         loading: false,
       };
     default:
