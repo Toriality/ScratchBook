@@ -3,6 +3,7 @@ import * as type from "../types";
 const initialState = {
   list: [],
   selected: [],
+  user_note: [],
   loading: true,
 };
 
@@ -19,6 +20,12 @@ export default function (state = initialState, action) {
         ...state,
         selected: action.payload,
         loading: false,
+      };
+    case type.POST_NOTE:
+      return {
+        ...state,
+        list: [...state.list, action.payload],
+        loading: true,
       };
     default:
       return state;

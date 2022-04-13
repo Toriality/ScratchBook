@@ -30,3 +30,21 @@ export const viewNote = (id) => async (dispatch) => {
     });
   }
 };
+
+export const postNote = (note) => async (dispatch) => {
+  try {
+    const res = await axios.post("http://localhost:5000/notes", note);
+    dispatch(
+      {
+        type: type.POST_NOTE,
+        payload: res.data,
+      },
+      getNotes()
+    );
+  } catch (e) {
+    dispatch({
+      type: type.POST_NOTE_ERROR,
+      payload: console.log(e),
+    });
+  }
+};

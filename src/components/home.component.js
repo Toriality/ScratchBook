@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/navbar.component";
-import CreateNote from "../components/create-note.component";
+import CreateNote from "./PostNote";
 import NotesList from "./NotesList";
 import { Component } from "react";
 import Box from "@mui/material/Box";
