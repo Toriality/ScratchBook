@@ -1,31 +1,33 @@
 import React, { Component } from "react";
-import { withStyles } from "@mui/styles";
 import { CircularProgress, Typography, Paper, Grid } from "@mui/material";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
+import { connect } from "react-redux";
+import { getNotes } from "../store/actions/notesActions";
+
 class NotesList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { notes: [], loading: true };
-    this.renderNotes = this.renderNotes.bind(this);
+  componentDidMount() {
+    this.props.getNotes();
   }
 
   renderNotes() {
-    const { classes } = this.props;
+    const { notes } = this.props.notes;
+
+    console.log(notes);
+
     return (
       <>
         <Grid container spacing={3}>
-          {this.state.notes
+          {notes
             .reverse()
             .slice(0, 21)
             .map((note) => {
               if (note.private === false) {
                 if (note.desc.length > 400) {
                   return (
-                    <Grid item xs={6}>
+                    <Grid key={note._id} item xs={6}>
                       <Link to={note._id}>
-                        <Paper className={classes.paper}>
+                        <Paper>
                           <Typography variant="h6">{note.title}</Typography>
                           <Typography variant="p">
                             {note.desc.substring(0, 400)}
@@ -45,7 +47,7 @@ class NotesList extends Component {
                   );
                 }
                 return (
-                  <Grid item xs={6}>
+                  <Grid key={note._id} item xs={6}>
                     <Link to={note._id}>
                       <Paper>
                         <Typography variant="h6">{note.title}</Typography>
@@ -63,28 +65,23 @@ class NotesList extends Component {
     );
   }
 
-  componentDidMount() {
-    axios
-      .get("https://my-scratch-book.herokuapp.com/notes/")
-      .then((response) => {
-        this.setState({
-          notes: response.data,
-          loading: false,
-        });
-      })
-      .catch((error) => {
-        console.log("Error while connecting to the database");
-      });
-  }
-
   render() {
+    console.log(this.props.notes);
     return (
       <>
-        <Typography variant="h6">Most recent notes:</Typography>
-        {this.state.loading ? <CircularProgress /> : this.renderNotes()}
+        <Typography variant="h6" align="center" mb="16px">
+          Most recent notes:
+        </Typography>
+        {this.props.notes.loading ? (
+          <CircularProgress sx={{ margin: "0 50%" }} />
+        ) : (
+          this.renderNotes()
+        )}
       </>
     );
   }
 }
 
-export default NotesList;
+const mapStateToProps = (state) => ({ notes: state.notes });
+
+export default connect(mapStateToProps, { getNotes })(NotesList);
