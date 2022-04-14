@@ -2,7 +2,7 @@ import React from "react";
 import { Component } from "react";
 import { Typography, Box, CircularProgress } from "@mui/material/";
 
-import Navbar from "./navbar.component";
+import Navbar from "./Navbar";
 
 import { connect } from "react-redux";
 import { viewNote } from "../store/actions/notesActions";

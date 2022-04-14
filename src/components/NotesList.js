@@ -16,34 +16,9 @@ class NotesList extends Component {
     return (
       <>
         <Grid container spacing={3}>
-          {list
-            .reverse()
-            .slice(0, 21)
-            .map((note) => {
-              if (note.private === false) {
-                if (note.desc.length > 400) {
-                  return (
-                    <Grid key={note._id} item xs={6}>
-                      <Link to={note._id}>
-                        <Paper>
-                          <Typography variant="h6">{note.title}</Typography>
-                          <Typography variant="p">
-                            {note.desc.substring(0, 400)}
-                            <Typography
-                              sx={{
-                                fontStyle: "italic",
-                                color: "#b0b0b0",
-                                display: "inline-block",
-                              }}
-                            >
-                              (...)
-                            </Typography>
-                          </Typography>
-                        </Paper>
-                      </Link>
-                    </Grid>
-                  );
-                }
+          {list.reverse().map((note) => {
+            if (note.private === false) {
+              if (note.desc.length > 400) {
                 return (
                   <Grid key={note._id} item xs={6}>
                     <Link to={note._id}>
@@ -51,13 +26,35 @@ class NotesList extends Component {
                         <Typography variant="h6">{note.title}</Typography>
                         <Typography variant="p">
                           {note.desc.substring(0, 400)}
+                          <Typography
+                            sx={{
+                              fontStyle: "italic",
+                              color: "#b0b0b0",
+                              display: "inline-block",
+                            }}
+                          >
+                            (...)
+                          </Typography>
                         </Typography>
                       </Paper>
                     </Link>
                   </Grid>
                 );
-              } else return null;
-            })}
+              }
+              return (
+                <Grid key={note._id} item xs={6}>
+                  <Link to={note._id}>
+                    <Paper>
+                      <Typography variant="h6">{note.title}</Typography>
+                      <Typography variant="p">
+                        {note.desc.substring(0, 400)}
+                      </Typography>
+                    </Paper>
+                  </Link>
+                </Grid>
+              );
+            } else return null;
+          })}
         </Grid>
       </>
     );

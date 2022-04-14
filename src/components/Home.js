@@ -1,14 +1,12 @@
 import React from "react";
-import Navbar from "../components/navbar.component";
+import Navbar from "./Navbar";
 import CreateNote from "./PostNote";
 import NotesList from "./NotesList";
 import { Component } from "react";
 import Box from "@mui/material/Box";
-import { withStyles } from "@mui/styles";
 
 class Home extends Component {
   render() {
-    const { classes } = this.props;
     return (
       <>
         <Navbar />
