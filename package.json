@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "ScratchBook's Front-end",
+  "version": "0.2",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
