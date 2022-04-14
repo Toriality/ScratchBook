@@ -1,16 +1,12 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
 import {
   Grid,
   Box,
-  Collapse,
   Checkbox,
   FormControlLabel,
   Button,
   TextField,
 } from "@mui/material";
-import { Alert } from "@mui/lab";
 
 import { connect } from "react-redux";
 import { postNote } from "../store/actions/notesActions";
@@ -44,8 +40,6 @@ class PostNote extends Component {
   };
 
   render() {
-    const { user_note } = this.props.notes;
-
     return (
       <div className="App">
         {/* Start of the form */}

@@ -7,7 +7,7 @@ const initialState = {
   loading: true, // True: display loading circle; False: display note(s)
 };
 
-export default function (state = initialState, action) {
+export default function notesReducer(state = initialState, action) {
   switch (action.type) {
     case type.GET_NOTES:
       return {
