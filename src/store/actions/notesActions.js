@@ -1,4 +1,4 @@
-import * as type from "../types";
+import * as type from "../types/notesTypes";
 import axios from "axios";
 
 export const getNotes = () => async (dispatch) => {
