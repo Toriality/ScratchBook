@@ -1,10 +1,10 @@
 import * as type from "../types/notesTypes";
 
 const initialState = {
-  list: [],
-  selected: [],
-  user_note: [],
-  loading: true,
+  list: [], // List all existing notes (from getNotes())
+  selected: [], // View selected note (from viewNote())
+  user_note: [], // Note created by the user (from postNote())
+  loading: true, // True: display loading circle; False: display note(s)
 };
 
 export default function (state = initialState, action) {
