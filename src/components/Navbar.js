@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { withStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, IconButton } from "@mui/material";
 
 class Navbar extends Component {
   render() {
-    const { classes } = this.props;
     return (
       /* Since the MuiAppBar is also a MuiPaper, it is necessary to make adjustments to the sx */
       <AppBar
