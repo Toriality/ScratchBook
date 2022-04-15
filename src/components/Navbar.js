@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, IconButton } from "@mui/material";
 
 class Navbar extends Component {
+  state = {
+    isOpen: false,
+  };
+
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  };
+
   render() {
     return (
       /* Since the MuiAppBar is also a MuiPaper, it is necessary to make adjustments to the sx */
