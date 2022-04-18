@@ -4,19 +4,19 @@ import * as type from "../types/usersTypes";
 // Check token and load user
 export const loadUser = () => (dispatch, getState) => {
   // User loading
-  dispatch({ type: USER_LOADING });
+  dispatch({ type: type.USER_LOADING });
 
   axios
     .get("http://localhost:5000/auth", tokenConfig(getState))
     .then((res) => {
       dispatch({
-        type: USER_LOADED,
+        type: type.USER_LOADED,
         payload: res.data,
       });
     })
     .catch((err) => {
       dispatch({
-        type: AUTH_ERROR,
+        type: type.AUTH_ERROR,
       });
     });
 };
@@ -39,13 +39,13 @@ export const register =
       .post("http://localhost:5000/users/", body, config)
       .then((res) => {
         dispatch({
-          type: REGISTER_SUCCESS,
+          type: type.REGISTER_SUCCESS,
           payload: res.data,
         });
       })
       .catch((err) => {
         dispatch({
-          type: REGISTER_FAIL,
+          type: type.REGISTER_FAIL,
         });
       });
   };
@@ -68,13 +68,13 @@ export const login =
       .post("http://localhost:5000/auth", body, config)
       .then((res) => {
         dispatch({
-          type: LOGIN_SUCCESS,
+          type: type.LOGIN_SUCCESS,
           payload: res.data,
         });
       })
       .catch((err) => {
         dispatch({
-          type: LOGIN_FAIL,
+          type: type.LOGIN_FAIL,
         });
       });
   };
@@ -82,7 +82,7 @@ export const login =
 // Logout user
 export const logout = () => {
   return {
-    type: LOGOUT_SUCCESS,
+    type: type.LOGOUT_SUCCESS,
   };
 };
 
