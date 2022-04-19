@@ -7,7 +7,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: type.USER_LOADING });
 
   axios
-    .get(process.env.REACT_APP_URL + "users", tokenConfig(getState))
+    .get(process.env.REACT_APP_URL + "auth", tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: type.USER_LOADED,
@@ -89,7 +89,7 @@ export const logout = () => {
 // Set config/headers and token
 export const tokenConfig = (getState) => {
   // Get token from localStorage
-  const token = getState().auth.token;
+  const token = getState().users.token;
 
   // Headers
   const config = {
