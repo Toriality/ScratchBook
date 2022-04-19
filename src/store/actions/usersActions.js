@@ -7,7 +7,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: type.USER_LOADING });
 
   axios
-    .get("http://localhost:5000/auth", tokenConfig(getState))
+    .get(process.env.REACT_APP_URL + "users", tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: type.USER_LOADED,
@@ -36,7 +36,7 @@ export const register =
     const body = JSON.stringify({ username, password });
 
     axios
-      .post("http://localhost:5000/users/", body, config)
+      .post(process.env.REACT_APP_URL + "users", body, config)
       .then((res) => {
         dispatch({
           type: type.REGISTER_SUCCESS,
@@ -65,7 +65,7 @@ export const login =
     const body = JSON.stringify({ username, password });
 
     axios
-      .post("http://localhost:5000/auth", body, config)
+      .post(process.env.REACT_APP_URL + "auth", body, config)
       .then((res) => {
         dispatch({
           type: type.LOGIN_SUCCESS,

@@ -4,7 +4,7 @@ import axios from "axios";
 // Get notes from the database
 export const getNotes = () => async (dispatch) => {
   try {
-    const res = await axios.get("https://my-scratch-book.herokuapp.com/notes");
+    const res = await axios.get(process.env.REACT_APP_URL + "notes");
     dispatch({
       type: type.GET_NOTES,
       payload: res.data,
@@ -20,9 +20,7 @@ export const getNotes = () => async (dispatch) => {
 // View a specific note
 export const viewNote = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(
-      `https://my-scratch-book.herokuapp.com/notes/id/${id}`
-    );
+    const res = await axios.get(process.env.REACT_APP_URL + `notes/id/${id}`);
     dispatch({
       type: type.VIEW_NOTE,
       payload: res.data,
@@ -38,10 +36,7 @@ export const viewNote = (id) => async (dispatch) => {
 // Create a new note and post it into the database
 export const postNote = (note) => async (dispatch) => {
   try {
-    const res = await axios.post(
-      "https://my-scratch-book.herokuapp.com/notes",
-      note
-    );
+    const res = await axios.post(process.env.REACT_APP_URL + "notes", note);
     dispatch({
       type: type.POST_NOTE,
       payload: res.data,
