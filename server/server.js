@@ -25,9 +25,12 @@ connection.once("open", () => {
   );
 });
 
-app.use("/notes", require("./routes/notes"));
-app.use("/users", require("./routes/users"));
-app.use("/auth", require("./routes/auth"));
+app.use("/api/notes", require("./routes/notes"));
+app.use("/api/users", require("./routes/users"));
+app.use("/api/auth", require("./routes/auth"));
+
+app.use(express.static("build"));
+app.get("*", (req, res) => res.sendFile(path.resolve("build", "index.html")));
 
 app.listen(port, () => {
   console.log(
