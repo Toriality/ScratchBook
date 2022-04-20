@@ -61,7 +61,6 @@ class NotesList extends Component {
   }
 
   render() {
-    console.log(this.props.notes);
     return (
       <>
         <Typography variant="h6" align="center" mb="16px">

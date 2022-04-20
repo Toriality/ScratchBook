@@ -42,7 +42,6 @@ class Navbar extends Component {
         <LoginModal />
       </>
     );
-    console.log(isAuthenticated);
 
     return (
       /* Since the MuiAppBar is also a MuiPaper, it is necessary to make adjustments to the sx */
