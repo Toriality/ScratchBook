@@ -6,7 +6,7 @@
   "scripts": {
     "server": "node server.js",
     "client": "cd .. && cd client && npm start",
-    "dev": "concurrently -p \"{time} {name}\" -t \"[dd] [HH:mm:ss]\" -n \"SERVER: ,CLIENT: \" -c \"bgBlue,inverse\" \"SET NODE_ENV=development&& npm run server\" \"npm run client\" "
+    "dev": "concurrently -p \"{time} {name}\" -t \"[dd] [HH:mm:ss]\" -n \"SERVER: ,CLIENT: \" -c \"bgBlue,inverse\" \"SET NODE_ENV=development&& nodemon server\" \"npm run client\" "
   },
   "author": "Pedro Crelier",
   "license": "ISC",
