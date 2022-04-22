@@ -21,6 +21,10 @@ const notesSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    user: {
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
   },
   {
     timestamps: true,
