@@ -33,6 +33,7 @@ class PostNote extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { title, desc, isPrivate } = this.state;
+    const { user } = this.props;
 
     const note = { title, desc, private: isPrivate };
 
@@ -98,6 +99,9 @@ class PostNote extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ notes: state.notes });
+const mapStateToProps = (state) => ({
+  notes: state.notes,
+  user: state.users.user,
+});
 
 export default connect(mapStateToProps, { postNote })(PostNote);

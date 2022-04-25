@@ -1,6 +1,8 @@
 import * as type from "../types/notesTypes";
 import axios from "axios";
 
+import { tokenConfig } from "./usersActions";
+
 // Get notes from the database
 export const getNotes = () => async (dispatch) => {
   try {
@@ -34,12 +36,35 @@ export const viewNote = (id) => async (dispatch) => {
 };
 
 // Create a new note and post it into the database
-export const postNote = (note) => async (dispatch) => {
+export const postNote = (note) => async (dispatch, getState) => {
   try {
-    const res = await axios.post(process.env.REACT_APP_URL + "notes", note);
+    const res = await axios.post(
+      process.env.REACT_APP_URL + "notes",
+      note,
+      tokenConfig(getState)
+    );
     dispatch({
       type: type.POST_NOTE,
       payload: res.data,
+    });
+    dispatch(getNotes());
+  } catch (e) {
+    dispatch({
+      type: type.POST_NOTE_ERROR,
+      payload: console.log(e),
+    });
+  }
+};
+
+// Delete note
+export const deleteNote = (id) => async (dispatch, getState) => {
+  try {
+    const res = await axios.delete(
+      process.env.REACT_APP_URL + `notes/id/${id}`,
+      tokenConfig(getState)
+    );
+    dispatch({
+      type: type.DELETE_NOTE,
     });
     dispatch(getNotes());
   } catch (e) {

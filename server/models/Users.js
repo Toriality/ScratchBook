@@ -13,6 +13,9 @@ const usersSchema = new Schema(
       type: String,
       required: true,
     },
+    notes: {
+      type: [Schema.Types.ObjectId],
+    },
   },
   {
     timestamps: true,

@@ -3,7 +3,7 @@ import { CircularProgress, Typography, Paper, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { getNotes } from "../store/actions/notesActions";
+import { getNotes, deleteNote } from "../store/actions/notesActions";
 
 class NotesList extends Component {
   componentDidMount() {
@@ -43,14 +43,45 @@ class NotesList extends Component {
               }
               return (
                 <Grid key={note._id} item xs={6}>
-                  <Link to={note._id}>
-                    <Paper>
+                  <Paper
+                    sx={{
+                      "& a ": {
+                        textDecoration: "none",
+                        color: "inherit",
+                        "&:hover": {
+                          fontWeight: "bold",
+                        },
+                      },
+                    }}
+                  >
+                    <Link to={note._id}>
                       <Typography variant="h6">{note.title}</Typography>
                       <Typography variant="p">
                         {note.desc.substring(0, 400)}
                       </Typography>
-                    </Paper>
-                  </Link>
+                    </Link>
+
+                    {this.props.user ? (
+                      note.user === this.props.user._id ? (
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            zIndex: "1",
+                            mt: 5,
+                            color: "red",
+                            "&:hover": {
+                              fontWeight: "bold",
+                              cursor: "pointer",
+                            },
+                          }}
+                        >
+                          <a onClick={() => this.props.deleteNote(note._id)}>
+                            Delete note
+                          </a>
+                        </Typography>
+                      ) : null
+                    ) : null}
+                  </Paper>
                 </Grid>
               );
             } else return null;
@@ -76,6 +107,9 @@ class NotesList extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ notes: state.notes });
+const mapStateToProps = (state) => ({
+  notes: state.notes,
+  user: state.users.user,
+});
 
-export default connect(mapStateToProps, { getNotes })(NotesList);
+export default connect(mapStateToProps, { getNotes, deleteNote })(NotesList);
