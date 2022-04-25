@@ -26,6 +26,10 @@ export default function notesReducer(state = initialState, action) {
         list: [...state.list, action.payload],
         loading: true,
       };
+    case type.DELETE_NOTE:
+      return {
+        ...state,
+      };
     default:
       return state;
   }

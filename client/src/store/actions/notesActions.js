@@ -55,3 +55,22 @@ export const postNote = (note) => async (dispatch, getState) => {
     });
   }
 };
+
+// Delete note
+export const deleteNote = (id) => async (dispatch, getState) => {
+  try {
+    const res = await axios.delete(
+      process.env.REACT_APP_URL + `notes/id/${id}`,
+      tokenConfig(getState)
+    );
+    dispatch({
+      type: type.DELETE_NOTE,
+    });
+    dispatch(getNotes());
+  } catch (e) {
+    dispatch({
+      type: type.POST_NOTE_ERROR,
+      payload: console.log(e),
+    });
+  }
+};
