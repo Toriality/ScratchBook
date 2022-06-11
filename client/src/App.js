@@ -2,13 +2,12 @@ import React, { Component } from "react";
 
 // Styles
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import theme from "./styles/styles";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 // Router
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Components
 import ViewNote from "./components/ViewNote";
@@ -28,10 +27,10 @@ class App extends Component {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Router>
-            <Route path="/" exact component={Home} />
-            <Route path="/:id" exact component={ViewNote} />
-          </Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:id" element={<ViewNote />} />
+          </Routes>
         </ThemeProvider>
       </Provider>
     );

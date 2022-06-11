@@ -33,7 +33,6 @@ class PostNote extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { title, desc, isPrivate } = this.state;
-    const { user } = this.props;
 
     const note = { title, desc, private: isPrivate };
 

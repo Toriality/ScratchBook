@@ -75,9 +75,11 @@ class NotesList extends Component {
                             },
                           }}
                         >
-                          <a onClick={() => this.props.deleteNote(note._id)}>
+                          <button
+                            onClick={() => this.props.deleteNote(note._id)}
+                          >
                             Delete note
-                          </a>
+                          </button>
                         </Typography>
                       ) : null
                     ) : null}

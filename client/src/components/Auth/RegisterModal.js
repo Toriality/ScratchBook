@@ -3,7 +3,7 @@ import { Button, Modal, Box, Typography, TextField } from "@mui/material";
 import { connect } from "react-redux";
 import { register } from "../../store/actions/usersActions";
 
-const format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+const format = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
 
 class RegisterModal extends Component {
   state = {
@@ -122,7 +122,7 @@ class RegisterModal extends Component {
             </form>
             <Typography variant="body2" sx={{ mt: 2 }}>
               This will sign you up with a new user. If you already have an
-              account <a href="#">log in here</a>
+              account log in here{/*TODO: Login link*/}
             </Typography>
           </Box>
         </Modal>

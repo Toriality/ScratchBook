@@ -59,7 +59,7 @@ export const postNote = (note) => async (dispatch, getState) => {
 // Delete note
 export const deleteNote = (id) => async (dispatch, getState) => {
   try {
-    const res = await axios.delete(
+    await axios.delete(
       process.env.REACT_APP_URL + `notes/id/${id}`,
       tokenConfig(getState)
     );
