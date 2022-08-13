@@ -15,13 +15,6 @@ const theme = createTheme({
         },
       },
     },
-    MuiCssBaseline: {
-      styleOverrides: `
-        body {
-          ${colors.background_css}
-        }
-      `,
-    },
   },
   palette: {
     primary: {
