@@ -5,18 +5,17 @@ import NotesList from "./NotesList";
 import { Component } from "react";
 import Box from "@mui/material/Box";
 
-class Home extends Component {
-  render() {
-    return (
-      <>
-        <Navbar />
-        <Box sx={{ m: "2.5em 10%" }}>
-          <CreateNote />
-          <NotesList />
-        </Box>
-      </>
-    );
-  }
+import Dashboard from "./Dashboard";
+import WelcomePage from "./WelcomePage";
+import { connect } from "react-redux";
+
+function Home(props) {
+  const { isAuthenticated } = props.users;
+  return <>{isAuthenticated ? <Dashboard /> : <WelcomePage />}</>;
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  users: state.users,
+});
+
+export default connect(mapStateToProps, null)(Home);

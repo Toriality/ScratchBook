@@ -12,6 +12,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Components
 import ViewNote from "./components/ViewNote";
 import Home from "./components/Home";
+import Footer from "./components/Footer";
 
 // Redux
 import { Provider } from "react-redux";
@@ -31,6 +32,7 @@ class App extends Component {
             <Route path="/" element={<Home />} />
             <Route path="/:id" element={<ViewNote />} />
           </Routes>
+          <Footer />
         </ThemeProvider>
       </Provider>
     );
